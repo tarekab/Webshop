@@ -1,0 +1,33 @@
+﻿
+<div ng-controller="listnorwayController">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p>{{productDetails.ProductName}}</p>
+                    </div>
+                    <div class="panel-body">
+                        <img ng-src="../Content/img/pictures/product-img{{ productDetails.id }}.jpg" class="img-responsive" alt="Image">
+
+                    </div>
+                    <div class="panel-footer">{{productDetails.Price | currency :'NOR'}}</div>
+
+
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <h3>Artikelnummer </h3> {{productDetails.articlenumber}}
+                <h3>Beskrivning av produkt </h3>{{productDetails.Description}}
+            </div>
+
+
+        </div>
+        <!--<button class="btn btn-primary"
+                
+            <i class="icon-shopping-cart icon-white" /> add to cart
+        </button>-->
+
+
+    </div>
+</div>

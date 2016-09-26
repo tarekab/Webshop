@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <!-- SCROLLS -->
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+    <link href="Content/style.css" rel="stylesheet" />
+    <!-- SPELLS -->
+    <!-- load angular and angular route via CDN -->
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-route.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/Controllers/controllers.js"></script>
+
+
+</head>
+<body ng-controller="mainController">
+
+    <!-- HEADER AND NAVBAR -->
+    <header>
+
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/"><i class="fa fa-home"></i> Hem</a></li>
+                    <li id="prodListClick"><a href="#product"><i class="fa fa-shield"></i> produkter</a></li>
+                    <li ng-controller="cartSwedenController"><a href="#/cart"><span class="glyphicon glyphicon-shopping-cart"></span> {{items.length}} <b>Items</b> </a></li>
+
+
+                </ul>
+                <!--<ul class="nav navbar-nav navbar-left">
+                    <li id="swedish"> <a href="#/"><img src="Content/img/se.png" /></a></li>
+                    <li id="norwegian"><a href="#norway"> <img src="Content/img/no.png" /></a></li>
+                    <li id="danish"><a href="#denmark"> <img src="Content/img/dk.png" /></a></li>
+                    <li id="finnish"><a href="#"><img src="Content/img/fi.png" /></a></li>
+                </ul>-->
+
+            </div>
+        </nav>
+    </header>
+
+    <!--<div class="col-sm-2">-->
+
+   
+        
+    <!--</div>-->
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+
+    <div ng-view>
+       
+
+
+    </div>
+
+</body>
+
+</html>
+
+
+

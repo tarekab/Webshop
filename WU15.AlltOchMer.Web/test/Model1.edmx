@@ -1,0 +1,1510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AlltOchMerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CartProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CartGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Pris" Type="decimal" Precision="7" Scale="0" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ParentsId" Type="int" />
+        </EntityType>
+        <EntityType Name="CategoryName">
+          <Key>
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="Category_Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CurrencyId" Type="int" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="3" />
+          <Property Name="ExchangeRate" Type="decimal" Precision="3" Scale="2" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" />
+        </EntityType>
+        <EntityType Name="PriceList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="ValidFrom" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="ArticleNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductDescription">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2500" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductPriceList">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="PriceListId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="PriceListId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="7" Scale="0" />
+        </EntityType>
+        <EntityType Name="ProductSupplier">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="SupplierId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="SupplierId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="VAT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="VAT" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="CountryId" Type="int" />
+        </EntityType>
+        <EntityType Name="VATProduct">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="VATId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="VATId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.CartProductSweden' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CartProductSweden">
+          <Key>
+            <PropertyRef Name="CartGuid" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="CartGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Pris" Type="decimal" Precision="7" Scale="0" />
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="ArticleNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.DanishMainCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DanishMainCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ParentsId" Type="int" />
+          <Property Name="Category_Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.FinnishMainCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.MainCategoryDanmark' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MainCategoryDanmark">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="150" />
+          <Property Name="PriceListName" Type="datetime" />
+          <Property Name="Category_Id" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="7" Scale="0" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="3" />
+          <Property Name="ExchangeRate" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2500" />
+          <Property Name="VAT" Type="decimal" Precision="4" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.MainCategoryNorway' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MainCategoryNorway">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="150" />
+          <Property Name="PriceListName" Type="datetime" />
+          <Property Name="Category_Id" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="7" Scale="0" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="3" />
+          <Property Name="ExchangeRate" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="VAT" Type="decimal" Precision="4" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.MainCategorySweden' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.NorwegianMainCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="NorwegianMainCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ParentsId" Type="int" />
+          <Property Name="Category_Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.ProductDk' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductDk">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2500" />
+          <Property Name="ArticleNumber" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.ProductNo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductNo">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2500" />
+          <Property Name="ArticleNumber" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.ProductSe' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductSe">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2500" />
+          <Property Name="ArticleNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="decimal" Precision="7" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'AlltOchMer.dbo.ProductSweden' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ProductSweden">
+          <Property Name="ProductName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.Subcategories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Subcategories">
+          <Key>
+            <PropertyRef Name="Category_Id" />
+          </Key>
+          <Property Name="Categoryid" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Category_Id" Type="int" Nullable="false" />
+          <Property Name="MainCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.SwedishMainCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SwedishMainCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ParentsId" Type="int" />
+          <Property Name="Category_Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AlltOchMer.dbo.SwedishSubcategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SwedishSubcategory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ParentsId" Type="int" />
+          <Property Name="Category_Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CartProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="CartProduct" Type="Self.CartProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CartProduct">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryName_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="CategoryName" Type="Self.CategoryName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryName">
+              <PropertyRef Name="Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryName_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="CategoryName" Type="Self.CategoryName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryName">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Country_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="Country" Type="Self.Country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Country">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDescription_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="ProductDescription" Type="Self.ProductDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductDescription">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDescription_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductDescription" Type="Self.ProductDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductDescription">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPriceList_PriceList">
+          <End Role="PriceList" Type="Self.PriceList" Multiplicity="1" />
+          <End Role="ProductPriceList" Type="Self.ProductPriceList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPriceList">
+              <PropertyRef Name="PriceListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPriceList_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductPriceList" Type="Self.ProductPriceList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductPriceList">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSupplier_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductSupplier" Type="Self.ProductSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductSupplier">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSupplier_supplier">
+          <End Role="supplier" Type="Self.supplier" Multiplicity="1" />
+          <End Role="ProductSupplier" Type="Self.ProductSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductSupplier">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VAT_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="VAT" Type="Self.VAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VAT">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VATProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="VATProduct" Type="Self.VATProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="VATProduct">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VATProduct_VAT">
+          <End Role="VAT" Type="Self.VAT" Multiplicity="1" />
+          <End Role="VATProduct" Type="Self.VATProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VAT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="VATProduct">
+              <PropertyRef Name="VATId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlltOchMerModelStoreContainer">
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CartProduct" EntityType="Self.CartProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryName" EntityType="Self.CategoryName" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceList" EntityType="Self.PriceList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductDescription" EntityType="Self.ProductDescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPriceList" EntityType="Self.ProductPriceList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductSupplier" EntityType="Self.ProductSupplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VAT" EntityType="Self.VAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VATProduct" EntityType="Self.VATProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CartProductSweden" EntityType="Self.CartProductSweden" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CartProductSweden].[CartGuid] AS [CartGuid], 
+    [CartProductSweden].[ProductId] AS [ProductId], 
+    [CartProductSweden].[Quantity] AS [Quantity], 
+    [CartProductSweden].[Pris] AS [Pris], 
+    [CartProductSweden].[id] AS [id], 
+    [CartProductSweden].[ArticleNumber] AS [ArticleNumber], 
+    [CartProductSweden].[Name] AS [Name]
+    FROM [dbo].[CartProductSweden] AS [CartProductSweden]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DanishMainCategory" EntityType="Self.DanishMainCategory" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DanishMainCategory].[Id] AS [Id], 
+    [DanishMainCategory].[ParentsId] AS [ParentsId], 
+    [DanishMainCategory].[Category_Id] AS [Category_Id], 
+    [DanishMainCategory].[Name] AS [Name], 
+    [DanishMainCategory].[LanguageId] AS [LanguageId], 
+    [DanishMainCategory].[ParentId] AS [ParentId]
+    FROM [dbo].[DanishMainCategory] AS [DanishMainCategory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MainCategoryDanmark" EntityType="Self.MainCategoryDanmark" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MainCategoryDanmark].[id] AS [id], 
+    [MainCategoryDanmark].[ProductName] AS [ProductName], 
+    [MainCategoryDanmark].[PriceListName] AS [PriceListName], 
+    [MainCategoryDanmark].[Category_Id] AS [Category_Id], 
+    [MainCategoryDanmark].[Price] AS [Price], 
+    [MainCategoryDanmark].[Name] AS [Name], 
+    [MainCategoryDanmark].[LanguageId] AS [LanguageId], 
+    [MainCategoryDanmark].[CurrencyCode] AS [CurrencyCode], 
+    [MainCategoryDanmark].[ExchangeRate] AS [ExchangeRate], 
+    [MainCategoryDanmark].[Description] AS [Description], 
+    [MainCategoryDanmark].[VAT] AS [VAT]
+    FROM [dbo].[MainCategoryDanmark] AS [MainCategoryDanmark]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MainCategoryNorway" EntityType="Self.MainCategoryNorway" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MainCategoryNorway].[id] AS [id], 
+    [MainCategoryNorway].[ProductName] AS [ProductName], 
+    [MainCategoryNorway].[PriceListName] AS [PriceListName], 
+    [MainCategoryNorway].[Category_Id] AS [Category_Id], 
+    [MainCategoryNorway].[Price] AS [Price], 
+    [MainCategoryNorway].[Name] AS [Name], 
+    [MainCategoryNorway].[LanguageId] AS [LanguageId], 
+    [MainCategoryNorway].[CurrencyCode] AS [CurrencyCode], 
+    [MainCategoryNorway].[ExchangeRate] AS [ExchangeRate], 
+    [MainCategoryNorway].[Description] AS [Description], 
+    [MainCategoryNorway].[VAT] AS [VAT]
+    FROM [dbo].[MainCategoryNorway] AS [MainCategoryNorway]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NorwegianMainCategory" EntityType="Self.NorwegianMainCategory" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [NorwegianMainCategory].[Id] AS [Id], 
+    [NorwegianMainCategory].[ParentsId] AS [ParentsId], 
+    [NorwegianMainCategory].[Category_Id] AS [Category_Id], 
+    [NorwegianMainCategory].[Name] AS [Name], 
+    [NorwegianMainCategory].[LanguageId] AS [LanguageId]
+    FROM [dbo].[NorwegianMainCategory] AS [NorwegianMainCategory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductDk" EntityType="Self.ProductDk" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductDk].[id] AS [id], 
+    [ProductDk].[name] AS [name], 
+    [ProductDk].[CategoryId] AS [CategoryId], 
+    [ProductDk].[Description] AS [Description], 
+    [ProductDk].[ArticleNumber] AS [ArticleNumber]
+    FROM [dbo].[ProductDk] AS [ProductDk]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductNo" EntityType="Self.ProductNo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductNo].[id] AS [id], 
+    [ProductNo].[name] AS [name], 
+    [ProductNo].[CategoryId] AS [CategoryId], 
+    [ProductNo].[Description] AS [Description], 
+    [ProductNo].[ArticleNumber] AS [ArticleNumber]
+    FROM [dbo].[ProductNo] AS [ProductNo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductSe" EntityType="Self.ProductSe" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductSe].[id] AS [id], 
+    [ProductSe].[name] AS [name], 
+    [ProductSe].[CategoryId] AS [CategoryId], 
+    [ProductSe].[Description] AS [Description], 
+    [ProductSe].[ArticleNumber] AS [ArticleNumber], 
+    [ProductSe].[Price] AS [Price]
+    FROM [dbo].[ProductSe] AS [ProductSe]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Subcategories" EntityType="Self.Subcategories" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Subcategories].[Categoryid] AS [Categoryid], 
+    [Subcategories].[Name] AS [Name], 
+    [Subcategories].[Category_Id] AS [Category_Id], 
+    [Subcategories].[MainCategory] AS [MainCategory], 
+    [Subcategories].[Id] AS [Id]
+    FROM [dbo].[Subcategories] AS [Subcategories]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SwedishMainCategory" EntityType="Self.SwedishMainCategory" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SwedishMainCategory].[Id] AS [Id], 
+    [SwedishMainCategory].[ParentsId] AS [ParentsId], 
+    [SwedishMainCategory].[Category_Id] AS [Category_Id], 
+    [SwedishMainCategory].[Name] AS [Name], 
+    [SwedishMainCategory].[LanguageId] AS [LanguageId]
+    FROM [dbo].[SwedishMainCategory] AS [SwedishMainCategory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SwedishSubcategory" EntityType="Self.SwedishSubcategory" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SwedishSubcategory].[Id] AS [Id], 
+    [SwedishSubcategory].[ParentsId] AS [ParentsId], 
+    [SwedishSubcategory].[Category_Id] AS [Category_Id], 
+    [SwedishSubcategory].[Name] AS [Name], 
+    [SwedishSubcategory].[LanguageId] AS [LanguageId]
+    FROM [dbo].[SwedishSubcategory] AS [SwedishSubcategory]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CartProduct_Product" Association="Self.FK_CartProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="CartProduct" EntitySet="CartProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryName_Category" Association="Self.FK_CategoryName_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryName" EntitySet="CategoryName" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryName_Language" Association="Self.FK_CategoryName_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="CategoryName" EntitySet="CategoryName" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Country_Currency" Association="Self.FK_Country_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Country" EntitySet="Country" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategory_Category" Association="Self.FK_ProductCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDescription_Language" Association="Self.FK_ProductDescription_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="ProductDescription" EntitySet="ProductDescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDescription_Product" Association="Self.FK_ProductDescription_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductDescription" EntitySet="ProductDescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPriceList_PriceList" Association="Self.FK_ProductPriceList_PriceList">
+            <End Role="PriceList" EntitySet="PriceList" />
+            <End Role="ProductPriceList" EntitySet="ProductPriceList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPriceList_Product" Association="Self.FK_ProductPriceList_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductPriceList" EntitySet="ProductPriceList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSupplier_Product" Association="Self.FK_ProductSupplier_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductSupplier" EntitySet="ProductSupplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSupplier_supplier" Association="Self.FK_ProductSupplier_supplier">
+            <End Role="supplier" EntitySet="supplier" />
+            <End Role="ProductSupplier" EntitySet="ProductSupplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VAT_Country" Association="Self.FK_VAT_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="VAT" EntitySet="VAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VATProduct_Product" Association="Self.FK_VATProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="VATProduct" EntitySet="VATProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VATProduct_VAT" Association="Self.FK_VATProduct_VAT">
+            <End Role="VAT" EntitySet="VAT" />
+            <End Role="VATProduct" EntitySet="VATProduct" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlltOchMerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CartProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CartGuid" Type="Guid" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Pris" Type="Decimal" Precision="7" Scale="0" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_CartProduct_Product" FromRole="CartProduct" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ParentsId" Type="Int32" />
+          <NavigationProperty Name="CategoryName" Relationship="Self.FK_CategoryName_Category" FromRole="Category" ToRole="CategoryName" />
+          <NavigationProperty Name="ProductCategory" Relationship="Self.FK_ProductCategory_Category" FromRole="Category" ToRole="ProductCategory" />
+        </EntityType>
+        <EntityType Name="CategoryName">
+          <Key>
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="Category_Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_CategoryName_Category" FromRole="CategoryName" ToRole="Category" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_CategoryName_Language" FromRole="CategoryName" ToRole="Language" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencyId" Type="Int32" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_Country_Currency" FromRole="Country" ToRole="Currency" />
+          <NavigationProperty Name="VAT" Relationship="Self.FK_VAT_Country" FromRole="Country" ToRole="VAT" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="ExchangeRate" Type="Decimal" Precision="3" Scale="2" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Country_Currency" FromRole="Currency" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CategoryName" Relationship="Self.FK_CategoryName_Language" FromRole="Language" ToRole="CategoryName" />
+          <NavigationProperty Name="ProductDescription" Relationship="Self.FK_ProductDescription_Language" FromRole="Language" ToRole="ProductDescription" />
+        </EntityType>
+        <EntityType Name="PriceList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ValidFrom" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductPriceList" Relationship="Self.FK_ProductPriceList_PriceList" FromRole="PriceList" ToRole="ProductPriceList" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ArticleNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CartProduct" Relationship="Self.FK_CartProduct_Product" FromRole="Product" ToRole="CartProduct" />
+          <NavigationProperty Name="ProductDescription" Relationship="Self.FK_ProductDescription_Product" FromRole="Product" ToRole="ProductDescription" />
+          <NavigationProperty Name="ProductPriceList" Relationship="Self.FK_ProductPriceList_Product" FromRole="Product" ToRole="ProductPriceList" />
+          <NavigationProperty Name="supplier" Relationship="Self.ProductSupplier" FromRole="Product" ToRole="supplier" />
+          <NavigationProperty Name="VAT" Relationship="Self.VATProduct" FromRole="Product" ToRole="VAT" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_ProductCategory_Category" FromRole="ProductCategory" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="ProductDescription">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_ProductDescription_Language" FromRole="ProductDescription" ToRole="Language" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductDescription_Product" FromRole="ProductDescription" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductPriceList">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="PriceListId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="PriceListId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="7" Scale="0" />
+          <NavigationProperty Name="PriceList" Relationship="Self.FK_ProductPriceList_PriceList" FromRole="ProductPriceList" ToRole="PriceList" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductPriceList_Product" FromRole="ProductPriceList" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="Self.ProductSupplier" FromRole="supplier" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="VAT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="VAT1" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_VAT_Country" FromRole="VAT" ToRole="Country" />
+          <NavigationProperty Name="Product" Relationship="Self.VATProduct" FromRole="VAT" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="CartProductSweden">
+          <Key>
+            <PropertyRef Name="CartGuid" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="CartGuid" Type="Guid" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Pris" Type="Decimal" Precision="7" Scale="0" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ArticleNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DanishMainCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ParentsId" Type="Int32" />
+          <Property Name="Category_Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MainCategoryDanmark">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PriceListName" Type="DateTime" Precision="3" />
+          <Property Name="Category_Id" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="7" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="ExchangeRate" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="VAT" Type="Decimal" Precision="4" Scale="2" />
+        </EntityType>
+        <EntityType Name="MainCategoryNorway">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PriceListName" Type="DateTime" Precision="3" />
+          <Property Name="Category_Id" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="7" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="ExchangeRate" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="VAT" Type="Decimal" Precision="4" Scale="2" />
+        </EntityType>
+        <EntityType Name="NorwegianMainCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ParentsId" Type="Int32" />
+          <Property Name="Category_Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductDk">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="ArticleNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductNo">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="ArticleNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductSe">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="ArticleNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="7" Scale="0" />
+        </EntityType>
+        <EntityType Name="Subcategories">
+          <Key>
+            <PropertyRef Name="Category_Id" />
+          </Key>
+          <Property Name="Categoryid" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category_Id" Type="Int32" Nullable="false" />
+          <Property Name="MainCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SwedishMainCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ParentsId" Type="Int32" />
+          <Property Name="Category_Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SwedishSubcategory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ParentsId" Type="Int32" />
+          <Property Name="Category_Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CartProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="CartProduct" Type="Self.CartProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CartProduct">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryName_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="CategoryName" Type="Self.CategoryName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryName">
+              <PropertyRef Name="Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryName_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="CategoryName" Type="Self.CategoryName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryName">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Country_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="Country" Type="Self.Country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Country">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VAT_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="VAT" Type="Self.VAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VAT">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDescription_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="ProductDescription" Type="Self.ProductDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductDescription">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPriceList_PriceList">
+          <End Role="PriceList" Type="Self.PriceList" Multiplicity="1" />
+          <End Role="ProductPriceList" Type="Self.ProductPriceList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPriceList">
+              <PropertyRef Name="PriceListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDescription_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductDescription" Type="Self.ProductDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductDescription">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPriceList_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductPriceList" Type="Self.ProductPriceList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductPriceList">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductSupplier">
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Role="supplier" Type="Self.supplier" Multiplicity="*" />
+        </Association>
+        <Association Name="VATProduct">
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Role="VAT" Type="Self.VAT" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="AlltOchMerEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cart" EntityType="Self.Cart" />
+          <EntitySet Name="CartProduct" EntityType="Self.CartProduct" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="CategoryName" EntityType="Self.CategoryName" />
+          <EntitySet Name="Country" EntityType="Self.Country" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" />
+          <EntitySet Name="Language" EntityType="Self.Language" />
+          <EntitySet Name="PriceList" EntityType="Self.PriceList" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" />
+          <EntitySet Name="ProductDescription" EntityType="Self.ProductDescription" />
+          <EntitySet Name="ProductPriceList" EntityType="Self.ProductPriceList" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="VAT" EntityType="Self.VAT" />
+          <EntitySet Name="CartProductSweden" EntityType="Self.CartProductSweden" />
+          <EntitySet Name="DanishMainCategory" EntityType="Self.DanishMainCategory" />
+          <EntitySet Name="MainCategoryDanmark" EntityType="Self.MainCategoryDanmark" />
+          <EntitySet Name="MainCategoryNorway" EntityType="Self.MainCategoryNorway" />
+          <EntitySet Name="NorwegianMainCategory" EntityType="Self.NorwegianMainCategory" />
+          <EntitySet Name="ProductDk" EntityType="Self.ProductDk" />
+          <EntitySet Name="ProductNo" EntityType="Self.ProductNo" />
+          <EntitySet Name="ProductSe" EntityType="Self.ProductSe" />
+          <EntitySet Name="Subcategories" EntityType="Self.Subcategories" />
+          <EntitySet Name="SwedishMainCategory" EntityType="Self.SwedishMainCategory" />
+          <EntitySet Name="SwedishSubcategory" EntityType="Self.SwedishSubcategory" />
+          <AssociationSet Name="FK_CartProduct_Product" Association="Self.FK_CartProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="CartProduct" EntitySet="CartProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryName_Category" Association="Self.FK_CategoryName_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryName" EntitySet="CategoryName" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategory_Category" Association="Self.FK_ProductCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryName_Language" Association="Self.FK_CategoryName_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="CategoryName" EntitySet="CategoryName" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Country_Currency" Association="Self.FK_Country_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Country" EntitySet="Country" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VAT_Country" Association="Self.FK_VAT_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="VAT" EntitySet="VAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDescription_Language" Association="Self.FK_ProductDescription_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="ProductDescription" EntitySet="ProductDescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPriceList_PriceList" Association="Self.FK_ProductPriceList_PriceList">
+            <End Role="PriceList" EntitySet="PriceList" />
+            <End Role="ProductPriceList" EntitySet="ProductPriceList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDescription_Product" Association="Self.FK_ProductDescription_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductDescription" EntitySet="ProductDescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPriceList_Product" Association="Self.FK_ProductPriceList_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductPriceList" EntitySet="ProductPriceList" />
+          </AssociationSet>
+          <AssociationSet Name="ProductSupplier" Association="Self.ProductSupplier">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="supplier" EntitySet="supplier" />
+          </AssociationSet>
+          <AssociationSet Name="VATProduct" Association="Self.VATProduct">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="VAT" EntitySet="VAT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlltOchMerModelStoreContainer" CdmEntityContainer="AlltOchMerEntities1">
+          <EntitySetMapping Name="Cart">
+            <EntityTypeMapping TypeName="AlltOchMerModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartProduct">
+            <EntityTypeMapping TypeName="AlltOchMerModel.CartProduct">
+              <MappingFragment StoreEntitySet="CartProduct">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CartGuid" ColumnName="CartGuid" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Pris" ColumnName="Pris" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="AlltOchMerModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryName">
+            <EntityTypeMapping TypeName="AlltOchMerModel.CategoryName">
+              <MappingFragment StoreEntitySet="CategoryName">
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="AlltOchMerModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currency">
+            <EntityTypeMapping TypeName="AlltOchMerModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="ExchangeRate" ColumnName="ExchangeRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Language">
+            <EntityTypeMapping TypeName="AlltOchMerModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceList">
+            <EntityTypeMapping TypeName="AlltOchMerModel.PriceList">
+              <MappingFragment StoreEntitySet="PriceList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="AlltOchMerModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ArticleNumber" ColumnName="ArticleNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategory">
+            <EntityTypeMapping TypeName="AlltOchMerModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategory">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductDescription">
+            <EntityTypeMapping TypeName="AlltOchMerModel.ProductDescription">
+              <MappingFragment StoreEntitySet="ProductDescription">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPriceList">
+            <EntityTypeMapping TypeName="AlltOchMerModel.ProductPriceList">
+              <MappingFragment StoreEntitySet="ProductPriceList">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="PriceListId" ColumnName="PriceListId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplier">
+            <EntityTypeMapping TypeName="AlltOchMerModel.supplier">
+              <MappingFragment StoreEntitySet="supplier">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AlltOchMerModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VAT">
+            <EntityTypeMapping TypeName="AlltOchMerModel.VAT">
+              <MappingFragment StoreEntitySet="VAT">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="VAT1" ColumnName="VAT" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartProductSweden">
+            <EntityTypeMapping TypeName="AlltOchMerModel.CartProductSweden">
+              <MappingFragment StoreEntitySet="CartProductSweden">
+                <ScalarProperty Name="CartGuid" ColumnName="CartGuid" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Pris" ColumnName="Pris" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ArticleNumber" ColumnName="ArticleNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanishMainCategory">
+            <EntityTypeMapping TypeName="AlltOchMerModel.DanishMainCategory">
+              <MappingFragment StoreEntitySet="DanishMainCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainCategoryDanmark">
+            <EntityTypeMapping TypeName="AlltOchMerModel.MainCategoryDanmark">
+              <MappingFragment StoreEntitySet="MainCategoryDanmark">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="PriceListName" ColumnName="PriceListName" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="ExchangeRate" ColumnName="ExchangeRate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainCategoryNorway">
+            <EntityTypeMapping TypeName="AlltOchMerModel.MainCategoryNorway">
+              <MappingFragment StoreEntitySet="MainCategoryNorway">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="PriceListName" ColumnName="PriceListName" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="ExchangeRate" ColumnName="ExchangeRate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NorwegianMainCategory">
+            <EntityTypeMapping TypeName="AlltOchMerModel.NorwegianMainCategory">
+              <MappingFragment StoreEntitySet="NorwegianMainCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductDk">
+            <EntityTypeMapping TypeName="AlltOchMerModel.ProductDk">
+              <MappingFragment StoreEntitySet="ProductDk">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ArticleNumber" ColumnName="ArticleNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductNo">
+            <EntityTypeMapping TypeName="AlltOchMerModel.ProductNo">
+              <MappingFragment StoreEntitySet="ProductNo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ArticleNumber" ColumnName="ArticleNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductSe">
+            <EntityTypeMapping TypeName="AlltOchMerModel.ProductSe">
+              <MappingFragment StoreEntitySet="ProductSe">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ArticleNumber" ColumnName="ArticleNumber" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subcategories">
+            <EntityTypeMapping TypeName="AlltOchMerModel.Subcategories">
+              <MappingFragment StoreEntitySet="Subcategories">
+                <ScalarProperty Name="Categoryid" ColumnName="Categoryid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="MainCategory" ColumnName="MainCategory" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SwedishMainCategory">
+            <EntityTypeMapping TypeName="AlltOchMerModel.SwedishMainCategory">
+              <MappingFragment StoreEntitySet="SwedishMainCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SwedishSubcategory">
+            <EntityTypeMapping TypeName="AlltOchMerModel.SwedishSubcategory">
+              <MappingFragment StoreEntitySet="SwedishSubcategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ProductSupplier" TypeName="AlltOchMerModel.ProductSupplier" StoreEntitySet="ProductSupplier">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="id" ColumnName="ProductId" />
+            </EndProperty>
+            <EndProperty Name="supplier">
+              <ScalarProperty Name="Id" ColumnName="SupplierId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="VATProduct" TypeName="AlltOchMerModel.VATProduct" StoreEntitySet="VATProduct">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="id" ColumnName="ProductId" />
+            </EndProperty>
+            <EndProperty Name="VAT">
+              <ScalarProperty Name="id" ColumnName="VATId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

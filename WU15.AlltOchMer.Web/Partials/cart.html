@@ -1,0 +1,42 @@
+﻿<div class="container">
+    <div class="col-sm-8">
+        <h2>KundKorg</h2>
+        <div ng:controller="cartSwedenController">
+            <table class="table table-responsive">
+                <tr>
+                    <th>Namn</th>
+                    <th>Antal</th>
+                    <th>Pris</th>
+                    <th>Summa</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="item in items">
+                    <td><b><i>{{item.name}}</i></b></td>
+                    <td><input type="number" ng:model="item.quantity" ng:required class="input-mini"></td>
+                    <td>{{item.pris | currency :'SEK'}}</td>
+                    <td>{{item.quantity * item.pris | currency :'SEK'}}</td>
+                    <td ng-controller="deleteItemController">
+                        <a href ng:click="deleteItem(item.id,$index)"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><b>Summa:</b></td>
+                    <td></td>
+                    <td><b>{{getTotal() | currency :'SEK' }}</b></td>
+
+                </tr>               
+            </table>
+                                    
+        </div>
+        
+            <div><a href="#/product"><button class="btn btn-default">Försätt Handla</button></a></div>
+            
+        
+        
+    </div>
+       
+    
+</div>
+
+           

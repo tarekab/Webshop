@@ -1,0 +1,30 @@
+﻿<div class="col-sm-2">
+
+    <div ng-controller="norwegianCategoryController">
+        <ul class="nav nav-pills nav-stacked">
+            <li ng-repeat="category in categories">
+                <a href="#/categorynorway/{{category.id}}">{{category.name}}</a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+    <div ng-controller="productNorwayController">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3" ng-repeat="product in products">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><a href="#/productlistnorway/{{product.id}}">{{product.name}}</a></div>
+                        <div class="panel-body">
+                            <img ng-src="../Content/img/pictures/product-img{{ product.id }}.jpg" alt="Image" id="productImage">
+                        </div>
+                        <div class="panel-footer">
+                            <button class="btn btn-success">kjøpe</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

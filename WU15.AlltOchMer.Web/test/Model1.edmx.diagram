@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6f9209be606140f59321149aa40fc48d" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="AlltOchMerModel.Cart" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.CartProduct" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.Category" Width="1.5" PointX="8.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.CategoryName" Width="1.5" PointX="10.375" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.Country" Width="1.5" PointX="3.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.Currency" Width="1.5" PointX="1.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.Language" Width="1.5" PointX="5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.PriceList" Width="1.5" PointX="1.125" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.Product" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.ProductCategory" Width="1.5" PointX="8.125" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.ProductDescription" Width="1.5" PointX="3.375" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.ProductPriceList" Width="1.5" PointX="7" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.supplier" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.sysdiagrams" Width="1.5" PointX="10.625" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.VAT" Width="1.5" PointX="5.875" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.CartProductSweden" Width="1.5" PointX="5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.DanishMainCategory" Width="1.5" PointX="10.625" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.MainCategoryDanmark" Width="1.5" PointX="11.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.MainCategoryNorway" Width="1.5" PointX="12.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.NorwegianMainCategory" Width="1.5" PointX="13.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.ProductDk" Width="1.5" PointX="15.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.ProductNo" Width="1.5" PointX="15.625" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.ProductSe" Width="1.5" PointX="15.125" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.Subcategories" Width="1.5" PointX="8.625" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.SwedishMainCategory" Width="1.5" PointX="13.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlltOchMerModel.SwedishSubcategory" Width="1.5" PointX="13.875" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="AlltOchMerModel.FK_CartProduct_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="AlltOchMerModel.FK_CategoryName_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="AlltOchMerModel.FK_ProductCategory_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="AlltOchMerModel.FK_CategoryName_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="AlltOchMerModel.FK_Country_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="AlltOchMerModel.FK_VAT_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="AlltOchMerModel.FK_ProductDescription_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="AlltOchMerModel.FK_ProductPriceList_PriceList" ManuallyRouted="false" />
+        <AssociationConnector Association="AlltOchMerModel.FK_ProductDescription_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="AlltOchMerModel.FK_ProductPriceList_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="AlltOchMerModel.ProductSupplier" ManuallyRouted="false" />
+        <AssociationConnector Association="AlltOchMerModel.VATProduct" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
